@@ -25,6 +25,7 @@
 </head>
 <body>
 
+
 <?php
 
     include_once('util/indexNav.php');
@@ -94,6 +95,7 @@
 
 
 ?>
+<a href="search.php">View Student List</a>
 <script>
 $(document).ready(function(){
    $("#myModal").modal();
