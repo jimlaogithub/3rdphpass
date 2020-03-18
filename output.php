@@ -10,10 +10,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <title>Document</title>
+
+
+    <style>
+        *{
+            font-family:'Open Sans', sans-serif !important;
+        }
+
+        img{
+            width: 90px;
+            height: 60px;
+        }
+    </style>
 </head>
 <body>
 
 <?php
+
+    include_once('util/indexNav.php');
     include_once('util/dbconnect.php');
     include_once('validations/validateFile.php');
     include_once('validations/validation.php'); 
@@ -51,45 +65,8 @@
                         (studLName,studFName,studMName,studGender,studAddress,studDOB,studPOB,studCivilStatus,studGaurdian,studContactNumber,studYearLvl,studCourse,studSY,studEmail)
                         VALUES
                         ('$lastname','$firstname','$middlename','$sex','$address','$DOB','$POB','$status','$guardian','$contact','$year','$course','$SY','$email')";
-                        if(mysqli_query($conn, $sql) && mysqli_query($conn, $sql2) ){?>
-
-                            <!-- modal -->
-                            <div class="container">
-                               <a href="#"> Login </a>
-                                <!-- Trigger the modal with a button -->
-
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="myModal" role="dialog">
-                                    <div class="modal-dialog">
-                                    
-                                        <!-- Modal content-->
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                            <h4 class="modal-title">Hello <?= $lastname,", ",$firstname ?></h4>
-                                            </div>
-                                            <div class="modal-body text-center">
-                                                <?php 
-                                                    echo '
-                                                    <div class="text-center">
-                                                        <img src="'.$dir . '/' . $file['name'].'" alt="..." style="width:200px; height:200px; ">
-                                                    </div>';
-                                                ?>
-                                                <p>Username: <?= $username ?></p>
-                                                <p>Password: <?= $password ?></p>
-                                                <p>Email: <?= $email ?></p>
-                                                <p>Contact Info: <?= $contact ?></p>
-                                            </div>
-                                            <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        <?php
-                            
+                        if(mysqli_query($conn, $sql) && mysqli_query($conn, $sql2) ){
+                            include('util/welcomeModal.php');        
                         }else{             
                             echo "failed to register";
                         }
